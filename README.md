@@ -1,20 +1,29 @@
 # Semiconductor Test Support Lab
 
-This project simulates a basic Application Support Engineering environment inspired by semiconductor test automation workflows.
+## Overview
 
-The goal of this lab is to practice Linux administration, Git/GitHub, Python scripting, CI/CD concepts, Jenkins pipeline execution, PostgreSQL integration, SQL metrics validation, Nginx dashboard publishing, troubleshooting, and technical documentation.
+This project simulates an Application Support Engineering environment inspired by semiconductor test automation workflows.
 
-This project starts with simulated semiconductor test data and evolves into a more complete internal support workflow using Jenkins, PostgreSQL, Nginx, and Scrum-inspired practices.
+The lab demonstrates how an internal engineering support toolchain can execute test simulations, generate reports, store results in a database, validate metrics, publish a dashboard, and run health checks through a CI/CD pipeline.
 
-## Project Purpose
+The main goal is not to perform real semiconductor testing, but to practice the type of technical workflow an Application Support Engineer may support in an engineering environment.
 
-In engineering environments, internal tools are often used to automate testing, collect results, store metrics, publish dashboards, and help teams identify failures quickly.
+## Current Project Status
 
-This lab simulates a simplified version of that workflow:
+| Sprint   | Focus Area                                          | Status    |
+| -------- | --------------------------------------------------- | --------- |
+| Sprint 1 | Linux, SSH, GitHub, and Python test simulation      | Completed |
+| Sprint 2 | Jenkins CI/CD pipeline                              | Completed |
+| Sprint 3 | PostgreSQL integration and SQL metrics validation   | Completed |
+| Sprint 4 | Nginx dashboard generated from PostgreSQL metrics   | Completed |
+| Sprint 5 | Application health checks and monitoring validation | Completed |
+| Sprint 6 | STDF-related semiconductor test data concepts       | Planned   |
+
+## Architecture
 
 ```text
 Windows Workstation
-   ↓ SSH / Git / Browser
+   ↓ SSH / Browser
 Ubuntu Server VM
    ↓
 GitHub Repository
@@ -32,39 +41,40 @@ SQL Metrics Validation
 Python Dashboard Generator
    ↓
 Nginx Dashboard
+   ↓
+Application Health Checks
+   ↓
+Archived Jenkins Artifacts
 ```
 
-## Agile Scrum-Inspired Workflow
+## Project Purpose
 
-This project is organized using Scrum-inspired practices to simulate how technical work is delivered in an engineering environment.
+In engineering environments, internal tools are often used to automate testing, collect results, store metrics, publish dashboards, and help teams identify failures quickly.
 
-The lab is divided into implementation sprints, each with a clear goal, deliverables, validation steps, documentation, and lessons learned.
+This lab simulates a simplified version of that workflow by combining:
 
-Current sprint structure:
-
-* Sprint 1: Ubuntu Server, SSH, Git, GitHub, and Python test simulation.
-* Sprint 2: Jenkins CI/CD pipeline execution.
-* Sprint 3: PostgreSQL integration and SQL metrics validation.
-* Sprint 4: Nginx dashboard generated from PostgreSQL metrics.
-* Sprint 5: Monitoring and additional troubleshooting documentation.
-* Sprint 6: STDF-related semiconductor test data concepts.
-
-More details are available in:
-
-[Agile Scrum-Inspired Process](docs/agile-scrum-process.md)
+* Linux administration
+* Git and GitHub
+* Python automation
+* Jenkins CI/CD pipelines
+* PostgreSQL data storage
+* SQL metrics validation
+* Nginx dashboard publishing
+* Application health checks
+* Troubleshooting documentation
+* Scrum-inspired project organization
 
 ## Current Features
 
 * Ubuntu Server VM configured.
 * SSH access enabled from Windows.
-* Git and GitHub configured.
-* Python test simulation script created.
-* Simulated ASIC/FPGA test results generated.
+* Git and GitHub repository configured.
+* Python semiconductor test simulator created.
+* Simulated ASIC and FPGA test results generated.
 * CSV report generated with PASS/FAIL results.
 * Basic performance benchmarking included.
 * Jenkins installed and configured.
 * Jenkins pipeline created using a `Jenkinsfile`.
-* Jenkins build executed successfully.
 * Jenkins Credentials used to protect the PostgreSQL password.
 * CSV report archived as a Jenkins build artifact.
 * PostgreSQL installed and configured.
@@ -76,7 +86,10 @@ More details are available in:
 * Dashboard served through Nginx on port `8081`.
 * Dashboard generated from PostgreSQL metrics using Python.
 * Jenkins pipeline generates and validates the Nginx dashboard automatically.
-* Technical documentation created for troubleshooting, Jenkins, PostgreSQL, Nginx dashboard automation, and Scrum-inspired workflow.
+* Application health check script created.
+* Jenkins pipeline validates services, ports, HTTP response, and database records.
+* Health check report generated and archived as a Jenkins build artifact.
+* Troubleshooting incidents documented using root cause analysis format.
 
 ## Technologies Used
 
@@ -92,32 +105,38 @@ More details are available in:
 * CI/CD pipeline concepts
 * PostgreSQL
 * SQL
-* Database validation
 * Nginx
 * HTML
 * Linux file permissions
+* Service health checks
+* Port connectivity checks
+* HTTP endpoint validation
 * Markdown technical documentation
 
 ## Technologies Planned
 
-* Application monitoring
-* Additional troubleshooting scenarios
 * STDF / semiconductor test data concepts
+* Additional troubleshooting scenarios
+* Dashboard improvements
+* Historical metrics
+* Automated alerting concepts
 
-## Project Structure
+## Repository Structure
 
 ```text
 semiconductor-test-support-lab/
 │
 ├── app/
 │   ├── fake_chip_test.py
-│   └── generate_dashboard.py
+│   ├── generate_dashboard.py
+│   └── health_check.py
 │
 ├── dashboard/
 │   └── index.html
 │
 ├── docs/
 │   ├── agile-scrum-process.md
+│   ├── health-checks.md
 │   ├── incident-001-ubuntu-network-dhcp-netplan.md
 │   ├── incident-002-jenkins-missing-postgresql-credential.md
 │   ├── incident-003-jenkins-nginx-permission-denied.md
@@ -126,7 +145,8 @@ semiconductor-test-support-lab/
 │   └── postgresql-integration.md
 │
 ├── reports/
-│   └── test_results.csv
+│   ├── test_results.csv
+│   └── health_check_report.txt
 │
 ├── sql/
 │   ├── create_test_results_table.sql
@@ -137,15 +157,32 @@ semiconductor-test-support-lab/
 └── README.md
 ```
 
+## Scrum-Inspired Workflow
+
+This project is organized using Scrum-inspired practices to simulate how technical work is delivered in an engineering environment.
+
+Each sprint includes:
+
+* A clear technical goal
+* Deliverables
+* Validation steps
+* Documentation
+* Lessons learned
+* Incremental improvement
+
+More details are available in:
+
+[Agile Scrum-Inspired Process](docs/agile-scrum-process.md)
+
 ## Python Test Simulator
 
-The current Python script simulates test execution for different semiconductor-related components, including ASICs and FPGAs.
-
-Script:
+The main simulation script is:
 
 ```text
 app/fake_chip_test.py
 ```
+
+The script simulates test execution for semiconductor-related components such as ASICs and FPGAs.
 
 Example simulated devices:
 
@@ -175,9 +212,15 @@ Each test generates:
 * PASS/FAIL status
 * Test duration in seconds
 
+The output is saved to:
+
+```text
+reports/test_results.csv
+```
+
 ## Performance Benchmarking
 
-The script includes basic performance benchmarking by measuring:
+The simulator includes basic performance benchmarking by measuring:
 
 * Individual test execution time
 * Total pipeline execution time
@@ -200,7 +243,7 @@ Report generated at: reports/test_results.csv
 
 ## Jenkins Pipeline
 
-This project includes a Jenkins pipeline that automatically runs the Python semiconductor test simulator.
+The Jenkins pipeline automates the full workflow.
 
 Pipeline flow:
 
@@ -221,6 +264,8 @@ SQL Metrics Validation
    ↓
 Nginx Dashboard Generation
    ↓
+Application Health Checks
+   ↓
 Archived Build Artifacts
 ```
 
@@ -235,7 +280,8 @@ The pipeline performs the following actions:
 * Runs SQL metrics validation.
 * Generates the Nginx dashboard from PostgreSQL metrics.
 * Validates that the dashboard file exists.
-* Archives the CSV report and dashboard HTML as build artifacts.
+* Runs application health checks.
+* Archives the CSV report, dashboard HTML, and health check report as build artifacts.
 
 More details are available in:
 
@@ -267,9 +313,7 @@ This demonstrates a better CI/CD security practice by avoiding plain-text secret
 
 This project uses PostgreSQL to store semiconductor test simulation results generated by the Python script.
 
-Originally, the Python simulator generated a CSV report. PostgreSQL was added to store that data in a relational database and allow SQL-based validation and metrics analysis.
-
-Database created:
+Database:
 
 ```text
 semiconductor_lab
@@ -303,18 +347,20 @@ More details are available in:
 
 ## SQL Metrics Validation
 
-After importing the CSV report into PostgreSQL, SQL queries are used to validate the test data.
+After importing the CSV report into PostgreSQL, SQL queries validate the test data.
 
-Example validation results:
+Example metrics:
 
 ```text
 Total records: 25
-PASS: 22
-FAIL: 3
-Average duration: 0.659 seconds
+PASS count
+FAIL count
+Average duration
+Slowest test
+Failed test details
 ```
 
-Example queries include:
+Example queries:
 
 ```sql
 SELECT COUNT(*) FROM test_results;
@@ -335,7 +381,7 @@ FROM test_results;
 
 This project includes an Nginx-hosted dashboard generated from PostgreSQL metrics.
 
-Dashboard URL in the local lab environment:
+Local dashboard URL:
 
 ```text
 http://192.168.159.135:8081
@@ -351,14 +397,14 @@ The script reads metrics from PostgreSQL and generates an HTML dashboard.
 
 The dashboard displays:
 
-* Jenkins pipeline status.
-* Total test records.
-* PASS count.
-* FAIL count.
-* Average test duration.
-* Slowest test.
-* Failed test details.
-* Current architecture.
+* Jenkins pipeline status
+* Total test records
+* PASS count
+* FAIL count
+* Average test duration
+* Slowest test
+* Failed test details
+* Current architecture
 
 The generated dashboard is published to:
 
@@ -366,13 +412,64 @@ The generated dashboard is published to:
 /var/www/semiconductor-dashboard/index.html
 ```
 
-The dashboard is served by Nginx on port:
+Nginx serves the dashboard on port:
 
 ```text
 8081
 ```
 
-## How to Run the Script Manually
+## Application Health Checks
+
+This project includes an automated health check stage that validates the main services and components used by the lab.
+
+Health check script:
+
+```text
+app/health_check.py
+```
+
+The health check validates:
+
+* Jenkins service status
+* PostgreSQL service status
+* Nginx service status
+* Jenkins port `8080`
+* PostgreSQL port `5432`
+* Nginx dashboard port `8081`
+* Dashboard HTTP response
+* PostgreSQL test result records
+
+The health check report is generated at:
+
+```text
+reports/health_check_report.txt
+```
+
+The report is archived by Jenkins as a build artifact.
+
+More details are available in:
+
+[Application Health Checks Documentation](docs/health-checks.md)
+
+## Jenkins Artifacts
+
+The Jenkins pipeline archives important output files as build artifacts.
+
+Archived artifacts include:
+
+```text
+reports/test_results.csv
+dashboard/index.html
+reports/health_check_report.txt
+```
+
+These artifacts provide evidence of:
+
+* Test results generated by the simulator
+* Dashboard HTML generated from PostgreSQL metrics
+* Health check validation results
+
+## How to Run the Test Simulator Manually
 
 From the project root directory, run:
 
@@ -380,7 +477,7 @@ From the project root directory, run:
 python3 app/fake_chip_test.py
 ```
 
-After execution, the script generates a CSV report:
+After execution, the script generates:
 
 ```text
 reports/test_results.csv
@@ -392,12 +489,12 @@ To view the report:
 cat reports/test_results.csv
 ```
 
-## How to Run SQL Metrics
+## How to Run SQL Metrics Manually
 
-To execute the metrics queries against PostgreSQL:
+To execute SQL metrics against PostgreSQL:
 
 ```bash
-PGPASSWORD='lab_password' psql -h localhost -U lab_user -d semiconductor_lab -f sql/metrics_queries.sql
+PGPASSWORD='<postgres-password>' psql -h localhost -U lab_user -d semiconductor_lab -f sql/metrics_queries.sql
 ```
 
 This runs the SQL validation queries stored in:
@@ -411,7 +508,7 @@ sql/metrics_queries.sql
 To generate the dashboard manually from PostgreSQL metrics:
 
 ```bash
-DB_PASSWORD='lab_password' python3 app/generate_dashboard.py
+DB_PASSWORD='<postgres-password>' python3 app/generate_dashboard.py
 ```
 
 This generates:
@@ -427,6 +524,20 @@ The dashboard can then be viewed at:
 http://192.168.159.135:8081
 ```
 
+## How to Run Health Checks Manually
+
+To run the health check script manually:
+
+```bash
+DB_PASSWORD='<postgres-password>' python3 app/health_check.py
+```
+
+This generates:
+
+```text
+reports/health_check_report.txt
+```
+
 ## Troubleshooting Documentation
 
 This project includes incident documentation based on real issues encountered during the lab.
@@ -437,7 +548,7 @@ Current incident reports:
 * [Incident 002: Jenkins Pipeline Failed Due to Missing PostgreSQL Credential](docs/incident-002-jenkins-missing-postgresql-credential.md)
 * [Incident 003: Jenkins Failed to Generate Nginx Dashboard Due to Linux File Permissions](docs/incident-003-jenkins-nginx-permission-denied.md)
 
-These documents include:
+Each incident document includes:
 
 * Summary
 * Environment
@@ -453,22 +564,22 @@ These documents include:
 
 This lab is designed to practice skills commonly used in Application Support Engineering environments:
 
-* Supporting Linux-based tools.
-* Working from a Windows workstation.
-* Using SSH for remote access.
-* Managing code with Git and GitHub.
-* Automating technical workflows.
-* Running Jenkins CI/CD pipelines.
-* Managing credentials securely in Jenkins.
-* Generating and reviewing test reports.
-* Storing application-generated data in PostgreSQL.
-* Running SQL queries for validation and metrics.
-* Publishing dashboards with Nginx.
-* Troubleshooting Linux permissions.
-* Understanding performance metrics.
-* Preparing for CI/CD pipeline support.
-* Documenting troubleshooting scenarios.
-* Working with Scrum-inspired project structure.
+* Supporting Linux-based tools
+* Working from a Windows workstation
+* Using SSH for remote access
+* Managing code with Git and GitHub
+* Automating technical workflows
+* Running Jenkins CI/CD pipelines
+* Managing credentials securely in Jenkins
+* Generating and reviewing test reports
+* Storing application-generated data in PostgreSQL
+* Running SQL queries for validation and metrics
+* Publishing dashboards with Nginx
+* Validating services, ports, HTTP endpoints, and database records
+* Troubleshooting Linux permissions
+* Reviewing Jenkins console output
+* Documenting incidents and resolutions
+* Working with Scrum-inspired project structure
 
 ## Application Support Relevance
 
@@ -476,20 +587,21 @@ This project demonstrates a simplified version of workflows that an Application 
 
 It includes:
 
-* Linux server administration.
-* Windows-to-Linux remote access.
-* GitHub-based source control.
-* Jenkins pipeline execution.
-* Jenkins credential usage.
-* Python-based automation.
-* CSV report generation.
-* PostgreSQL data storage.
-* SQL metrics validation.
-* Nginx dashboard publishing.
-* Linux file permission troubleshooting.
-* Technical documentation.
-* Incident documentation.
-* Incremental delivery using Scrum-inspired practices.
+* Linux server administration
+* Windows-to-Linux remote access
+* GitHub-based source control
+* Jenkins pipeline execution
+* Jenkins credential usage
+* Python-based automation
+* CSV report generation
+* PostgreSQL data storage
+* SQL metrics validation
+* Nginx dashboard publishing
+* Service and port health checks
+* Linux file permission troubleshooting
+* Technical documentation
+* Incident documentation
+* Incremental delivery using Scrum-inspired practices
 
 In a real environment, similar workflows may be used to support internal engineering tools, automated test systems, build pipelines, performance reporting, operational dashboards, and troubleshooting processes.
 
@@ -497,11 +609,12 @@ In a real environment, similar workflows may be used to support internal enginee
 
 Planned next steps:
 
-1. Add monitoring checks for Jenkins, PostgreSQL, and Nginx services.
-2. Add additional troubleshooting documentation for service failures.
-3. Explore STDF-related concepts for semiconductor test data processing.
-4. Improve dashboard styling and add more metrics.
-5. Add automated health-check scripts.
+1. Explore STDF-related concepts for semiconductor test data processing.
+2. Add additional troubleshooting scenarios for service failures.
+3. Improve dashboard styling and add more metrics.
+4. Add historical build trend tracking.
+5. Add automated alerting concepts.
+6. Add dashboard uptime and response time tracking.
 
 ## Learning Goal
 
