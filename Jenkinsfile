@@ -60,11 +60,17 @@ SQL
                 '''
             }
         }
+
+        stage('Run Application Health Checks') {
+            steps {
+                sh 'python3 app/health_check.py'
+            }
+        }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'reports/test_results.csv,dashboard/index.html', fingerprint: true
+            archiveArtifacts artifacts: 'reports/test_results.csv,dashboard/index.html,reports/health_check_report.txt', fingerprint: true
         }
     }
 }
