@@ -26,6 +26,26 @@ Future: Jenkins Pipeline
 Future: PostgreSQL Database
    ↓
 Future: Nginx Dashboard
+## Agile Scrum-Inspired Workflow
+
+This project is organized using Scrum-inspired practices to simulate how technical work is delivered in an engineering environment.
+
+The lab is divided into small implementation phases called sprints. Each sprint has a clear goal, deliverables, validation steps, and documentation.
+
+Current sprint structure:
+
+* Sprint 1: Ubuntu Server, SSH, Git, GitHub, and Python test simulation.
+* Sprint 2: Jenkins CI/CD pipeline execution.
+* Sprint 3: PostgreSQL integration.
+* Sprint 4: Nginx dashboard.
+* Sprint 5: Monitoring and troubleshooting documentation.
+* Sprint 6: STDF-related semiconductor test data concepts.
+
+More details are documented in:
+
+```text
+docs/agile-scrum-process.md
+```
 ```
 
 ## Current Features
