@@ -5,7 +5,7 @@ pipeline {
         DB_HOST = 'localhost'
         DB_NAME = 'semiconductor_lab'
         DB_USER = 'lab_user'
-        DB_PASSWORD = 'lab_password'
+        DB_PASSWORD = credentials('postgres-lab-password')
     }
 
     stages {
