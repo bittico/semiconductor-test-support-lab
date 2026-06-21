@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        DB_HOST = 'localhost'
+        DB_NAME = 'semiconductor_lab'
+        DB_USER = 'lab_user'
+        DB_PASSWORD = 'lab_password'
+    }
+
     stages {
         stage('Verify Python') {
             steps {
@@ -17,6 +24,25 @@ pipeline {
         stage('Show Generated Report') {
             steps {
                 sh 'cat reports/test_results.csv'
+            }
+        }
+
+        stage('Import CSV into PostgreSQL') {
+            steps {
+                sh '''
+                    PGPASSWORD="$DB_PASSWORD" psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" <<'SQL'
+DELETE FROM test_results;
+\\copy test_results(timestamp, device_id, test_name, status, duration_seconds) FROM 'reports/test_results.csv' WITH CSV HEADER;
+SQL
+                '''
+            }
+        }
+
+        stage('Run SQL Metrics Validation') {
+            steps {
+                sh '''
+                    PGPASSWORD="$DB_PASSWORD" psql -h "$DB_HOST" -U "$DB_USER" -d "$DB_NAME" -f sql/metrics_queries.sql
+                '''
             }
         }
     }
