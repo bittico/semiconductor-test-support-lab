@@ -2,7 +2,7 @@
 
 This project simulates a basic Application Support Engineering environment inspired by semiconductor test automation workflows.
 
-The goal of this lab is to practice Linux administration, Git/GitHub, Python scripting, CI/CD concepts, performance benchmarking, test result reporting, and technical documentation.
+The goal of this lab is to practice Linux administration, Git/GitHub, Python scripting, CI/CD concepts, performance benchmarking, test result reporting, troubleshooting, and technical documentation.
 
 This project starts with simulated semiconductor test data and is designed to evolve into a more realistic test data pipeline using Jenkins, PostgreSQL, Nginx, and STDF-related concepts.
 
@@ -17,47 +17,19 @@ Windows Workstation
    ↓ SSH / Git / Browser
 Ubuntu Server VM
    ↓
+GitHub Repository
+   ↓
+Jenkins Pipeline
+   ↓
 Python Test Simulator
    ↓
 CSV Report
    ↓
-Future: Jenkins Pipeline
-   ↓
 Future: PostgreSQL Database
    ↓
 Future: Nginx Dashboard
-## Agile Scrum-Inspired Workflow
-
-This project is organized using Scrum-inspired practices to simulate how technical work is delivered in an engineering environment.
-
-The lab is divided into small implementation phases called sprints. Each sprint has a clear goal, deliverables, validation steps, and documentation.
-
-Current sprint structure:
-
-* Sprint 1: Ubuntu Server, SSH, Git, GitHub, and Python test simulation.
-* Sprint 2: Jenkins CI/CD pipeline execution.
-* Sprint 3: PostgreSQL integration.
-* Sprint 4: Nginx dashboard.
-* Sprint 5: Monitoring and troubleshooting documentation.
-* Sprint 6: STDF-related semiconductor test data concepts.
-
-More details are documented in:
-
-```text
-docs/agile-scrum-process.md
-```
 ```
 
-## Current Features
-
-* Ubuntu Server VM configured
-* Network connectivity fixed using Netplan
-* SSH access enabled
-* Git and GitHub configured
-* Python test simulation script created
-* Simulated ASIC/FPGA test results generated
-* CSV report generated with PASS/FAIL results
-* Basic performance benchmarking included
 ## Agile Scrum-Inspired Workflow
 
 This project is organized using Scrum-inspired practices to simulate how technical work is delivered in an engineering environment.
@@ -77,6 +49,22 @@ More details are available in:
 
 [Agile Scrum-Inspired Process](docs/agile-scrum-process.md)
 
+## Current Features
+
+* Ubuntu Server VM configured.
+* Network connectivity fixed using Netplan.
+* SSH access enabled from Windows.
+* Git and GitHub configured.
+* Python test simulation script created.
+* Simulated ASIC/FPGA test results generated.
+* CSV report generated with PASS/FAIL results.
+* Basic performance benchmarking included.
+* Jenkins installed and configured.
+* Jenkins pipeline created using a `Jenkinsfile`.
+* Jenkins build executed successfully.
+* CSV report archived as a Jenkins build artifact.
+* Technical documentation created for troubleshooting, Jenkins, and Scrum-inspired workflow.
+
 ## Technologies Used
 
 * Ubuntu Server
@@ -86,15 +74,15 @@ More details are available in:
 * GitHub
 * Python
 * CSV reporting
+* Jenkins
+* CI/CD pipeline concepts
+* Markdown technical documentation
 
 ## Technologies Planned
 
-* Jenkins
-* CI/CD pipelines
 * PostgreSQL
 * Nginx
 * Application monitoring
-* Troubleshooting documentation
 * STDF / semiconductor test data concepts
 
 ## Project Structure
@@ -105,13 +93,17 @@ semiconductor-test-support-lab/
 ├── app/
 │   └── fake_chip_test.py
 │
+├── docs/
+│   ├── agile-scrum-process.md
+│   ├── incident-001-ubuntu-network-dhcp-netplan.md
+│   └── jenkins-pipeline.md
+│
 ├── reports/
 │   └── test_results.csv
 │
-├── docs/
-│
 ├── sql/
 │
+├── Jenkinsfile
 └── README.md
 ```
 
@@ -172,7 +164,38 @@ Total pipeline duration: 18.6 seconds
 Report generated at: reports/test_results.csv
 ```
 
-## How to Run the Script
+## Jenkins Pipeline
+
+This project includes a Jenkins pipeline that automatically runs the Python semiconductor test simulator.
+
+Pipeline flow:
+
+```text
+GitHub Repository
+   ↓
+Jenkins Pipeline
+   ↓
+Jenkinsfile
+   ↓
+Python Test Simulator
+   ↓
+CSV Report
+   ↓
+Archived Build Artifact
+```
+
+The pipeline performs the following actions:
+
+* Verifies that Python is available.
+* Runs the semiconductor test simulation script.
+* Displays the generated CSV report in the Jenkins console output.
+* Archives the CSV report as a Jenkins build artifact.
+
+More details are available in:
+
+[Jenkins Pipeline Documentation](docs/jenkins-pipeline.md)
+
+## How to Run the Script Manually
 
 From the project root directory, run:
 
@@ -182,7 +205,7 @@ python3 app/fake_chip_test.py
 
 After execution, the script generates a CSV report:
 
-```bash
+```text
 reports/test_results.csv
 ```
 
@@ -196,25 +219,25 @@ cat reports/test_results.csv
 
 This lab is designed to practice skills commonly used in Application Support Engineering environments:
 
-* Supporting Linux-based tools
-* Working from a Windows workstation
-* Using SSH for remote access
-* Managing code with Git and GitHub
-* Automating technical workflows
-* Generating and reviewing test reports
-* Understanding performance metrics
-* Preparing for CI/CD pipeline support
-* Documenting troubleshooting scenarios
+* Supporting Linux-based tools.
+* Working from a Windows workstation.
+* Using SSH for remote access.
+* Managing code with Git and GitHub.
+* Automating technical workflows.
+* Generating and reviewing test reports.
+* Understanding performance metrics.
+* Preparing for CI/CD pipeline support.
+* Documenting troubleshooting scenarios.
+* Working with Scrum-inspired project structure.
 
 ## Future Improvements
 
 Planned next steps:
 
-1. Add a Jenkins pipeline to execute the Python script automatically.
-2. Store test results in PostgreSQL.
-3. Build a simple Nginx dashboard to display test metrics.
-4. Add troubleshooting documentation for common support scenarios.
-5. Explore STDF-related concepts for semiconductor test data processing.
+1. Store test results in PostgreSQL.
+2. Build a simple Nginx dashboard to display test metrics.
+3. Add monitoring documentation for common support scenarios.
+4. Explore STDF-related concepts for semiconductor test data processing.
 
 ## Learning Goal
 
