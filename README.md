@@ -2,33 +2,31 @@
 
 This project simulates a basic Application Support Engineering environment inspired by semiconductor test automation workflows.
 
-The goal of this lab is to practice Linux administration, Git/GitHub, Python scripting, CI/CD concepts, performance benchmarking, test result reporting, troubleshooting, and technical documentation.
+The goal of this lab is to practice Linux administration, Git/GitHub, Python scripting, CI/CD concepts, Jenkins pipeline execution, performance benchmarking, test result reporting, troubleshooting, and technical documentation.
 
-This project starts with simulated semiconductor test data and is designed to evolve into a more realistic test data pipeline using Jenkins, PostgreSQL, Nginx, and STDF-related concepts.
+This project starts with simulated semiconductor test data and is designed to evolve into a more realistic test data pipeline using PostgreSQL, Nginx, and STDF-related concepts.
 
 ## Project Purpose
 
 In engineering environments, internal tools are often used to automate testing, collect results, store metrics, and help teams identify failures quickly.
 
-This lab simulates a simplified version of that workflow:
+This lab simulates a simplified workflow:
 
-```text
 Windows Workstation
-   ↓ SSH / Git / Browser
+↓ SSH / Git / Browser
 Ubuntu Server VM
-   ↓
+↓
 GitHub Repository
-   ↓
+↓
 Jenkins Pipeline
-   ↓
+↓
 Python Test Simulator
-   ↓
+↓
 CSV Report
-   ↓
+↓
 Future: PostgreSQL Database
-   ↓
+↓
 Future: Nginx Dashboard
-```
 
 ## Agile Scrum-Inspired Workflow
 
@@ -60,7 +58,7 @@ More details are available in:
 * CSV report generated with PASS/FAIL results.
 * Basic performance benchmarking included.
 * Jenkins installed and configured.
-* Jenkins pipeline created using a `Jenkinsfile`.
+* Jenkins pipeline created using a Jenkinsfile.
 * Jenkins build executed successfully.
 * CSV report archived as a Jenkins build artifact.
 * Technical documentation created for troubleshooting, Jenkins, and Scrum-inspired workflow.
@@ -87,25 +85,14 @@ More details are available in:
 
 ## Project Structure
 
-```text
-semiconductor-test-support-lab/
-│
-├── app/
-│   └── fake_chip_test.py
-│
-├── docs/
-│   ├── agile-scrum-process.md
-│   ├── incident-001-ubuntu-network-dhcp-netplan.md
-│   └── jenkins-pipeline.md
-│
-├── reports/
-│   └── test_results.csv
-│
-├── sql/
-│
-├── Jenkinsfile
-└── README.md
-```
+* app/fake_chip_test.py
+* docs/agile-scrum-process.md
+* docs/incident-001-ubuntu-network-dhcp-netplan.md
+* docs/jenkins-pipeline.md
+* reports/test_results.csv
+* sql/
+* Jenkinsfile
+* README.md
 
 ## Python Test Simulator
 
@@ -113,23 +100,19 @@ The current Python script simulates test execution for different semiconductor-r
 
 Example simulated devices:
 
-```text
-ASIC-1001
-ASIC-1002
-FPGA-2001
-FPGA-2002
-CTRL-3001
-```
+* ASIC-1001
+* ASIC-1002
+* FPGA-2001
+* FPGA-2002
+* CTRL-3001
 
 Example simulated tests:
 
-```text
-Voltage Test
-Frequency Test
-Memory Test
-Temperature Test
-Signal Integrity Test
-```
+* Voltage Test
+* Frequency Test
+* Memory Test
+* Temperature Test
+* Signal Integrity Test
 
 Each test generates:
 
@@ -150,39 +133,23 @@ The script includes basic performance benchmarking by measuring:
 * Pass rate
 * Fail count
 
-Example output:
-
-```text
-===== Semiconductor Test Summary =====
-Total tests executed: 25
-Passed: 22
-Failed: 3
-Pass rate: 88.0%
-Average test duration: 0.742 seconds
-Slowest test: Frequency Test on FPGA-2001 - 1.17 seconds
-Total pipeline duration: 18.6 seconds
-Report generated at: reports/test_results.csv
-```
-
 ## Jenkins Pipeline
 
 This project includes a Jenkins pipeline that automatically runs the Python semiconductor test simulator.
 
 Pipeline flow:
 
-```text
 GitHub Repository
-   ↓
+↓
 Jenkins Pipeline
-   ↓
+↓
 Jenkinsfile
-   ↓
+↓
 Python Test Simulator
-   ↓
+↓
 CSV Report
-   ↓
+↓
 Archived Build Artifact
-```
 
 The pipeline performs the following actions:
 
@@ -199,21 +166,15 @@ More details are available in:
 
 From the project root directory, run:
 
-```bash
-python3 app/fake_chip_test.py
-```
+`python3 app/fake_chip_test.py`
 
 After execution, the script generates a CSV report:
 
-```text
-reports/test_results.csv
-```
+`reports/test_results.csv`
 
 To view the report:
 
-```bash
-cat reports/test_results.csv
-```
+`cat reports/test_results.csv`
 
 ## Why This Lab Matters
 
