@@ -45,11 +45,26 @@ SQL
                 '''
             }
         }
+
+        stage('Generate Nginx Dashboard') {
+            steps {
+                sh 'python3 app/generate_dashboard.py'
+            }
+        }
+
+        stage('Validate Dashboard File') {
+            steps {
+                sh '''
+                    test -f /var/www/semiconductor-dashboard/index.html
+                    grep -q "Semiconductor Test Support Dashboard" /var/www/semiconductor-dashboard/index.html
+                '''
+            }
+        }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'reports/test_results.csv', fingerprint: true
+            archiveArtifacts artifacts: 'reports/test_results.csv,dashboard/index.html', fingerprint: true
         }
     }
 }
