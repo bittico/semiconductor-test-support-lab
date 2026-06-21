@@ -200,6 +200,10 @@ The pipeline performs the following actions:
 * Runs the semiconductor test simulation script.
 * Displays the generated CSV report in the Jenkins console output.
 * Archives the CSV report as a Jenkins build artifact.
+Additional automation details are available in:
+
+
+[Jenkins PostgreSQL Automation Documentation](docs/jenkins-postgresql-automation.md)
 
 More details are available in:
 
