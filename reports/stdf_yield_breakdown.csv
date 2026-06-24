@@ -1,0 +1,23 @@
+category,name,total,passed,failed,yield_percentage
+lot_id,LOT-2026-001,180,161,19,89.44
+lot_id,LOT-2026-002,180,161,19,89.44
+wafer_id,WAFER-01,120,109,11,90.83
+wafer_id,WAFER-02,120,106,14,88.33
+wafer_id,WAFER-03,120,107,13,89.17
+site_id,1,108,95,13,87.96
+site_id,2,108,99,9,91.67
+site_id,3,72,62,10,86.11
+site_id,4,72,66,6,91.67
+tester_id,ATE-01,222,199,23,89.64
+tester_id,ATE-02,138,123,15,89.13
+device_type,ASIC,186,164,22,88.17
+device_type,FPGA,174,158,16,90.8
+test_name,Frequency Test,60,51,9,85.0
+test_name,Leakage Current,60,57,3,95.0
+test_name,Memory BIST,60,44,16,73.33
+test_name,Signal Integrity,60,57,3,95.0
+test_name,Temperature Test,60,56,4,93.33
+test_name,Voltage Test,60,57,3,95.0
+fail_reason,HIGH_LIMIT,27,0,27,0.0
+fail_reason,LOW_LIMIT,11,0,11,0.0
+fail_reason,NONE,322,322,0,100.0

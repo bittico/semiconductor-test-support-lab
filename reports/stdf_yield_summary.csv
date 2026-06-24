@@ -1,0 +1,5 @@
+metric,value
+total_records,360
+passed,322
+failed,38
+yield_percentage,89.44
