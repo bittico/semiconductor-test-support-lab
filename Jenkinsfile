@@ -61,6 +61,32 @@ SQL
             }
         }
 
+        stage('Generate STDF-Inspired Data') {
+            steps {
+                sh 'python3 app/generate_stdf_inspired_data.py'
+            }
+        }
+
+        stage('Process STDF-Inspired Data') {
+            steps {
+                sh 'python3 app/process_stdf_inspired_data.py'
+            }
+        }
+
+        stage('Validate STDF Reports') {
+            steps {
+                sh '''
+                    test -f data/stdf_inspired_test_records.csv
+                    test -f reports/stdf_yield_summary.csv
+                    test -f reports/stdf_yield_breakdown.csv
+                    test -f reports/stdf_yield_report.txt
+
+                    grep -q "yield_percentage" reports/stdf_yield_summary.csv
+                    grep -q "STDF-Inspired Yield Report" reports/stdf_yield_report.txt
+                '''
+            }
+        }
+
         stage('Run Application Health Checks') {
             steps {
                 sh 'python3 app/health_check.py'
@@ -70,7 +96,7 @@ SQL
 
     post {
         always {
-            archiveArtifacts artifacts: 'reports/test_results.csv,dashboard/index.html,reports/health_check_report.txt', fingerprint: true
+            archiveArtifacts artifacts: 'reports/test_results.csv,dashboard/index.html,reports/health_check_report.txt,data/stdf_inspired_test_records.csv,reports/stdf_yield_summary.csv,reports/stdf_yield_breakdown.csv,reports/stdf_yield_report.txt', fingerprint: true
         }
     }
 }
